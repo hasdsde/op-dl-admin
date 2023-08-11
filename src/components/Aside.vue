@@ -13,9 +13,12 @@
                             <q-item-section avatar>
                                 <!--                                <q-icon :name="child.icon" class="text-black"/>-->
                             </q-item-section>
-                            <q-item-section class="text-black op-font no-padding text-body2">{{
-                                child.desc
-                                }}
+                            <q-item-section class="text-black  op-font no-padding text-body2">
+                                <div :class="link === child.link ?'text-white':''">
+                                    {{
+                                    child.desc
+                                    }}
+                                </div>
                             </q-item-section>
                         </q-item>
                     </q-list>
@@ -30,7 +33,6 @@ import {useRouter} from "vue-router/dist/vue-router";
 import {menu} from "src/components/models";
 
 
-const props = defineProps(['currentMenu'])
 let menus = ref(menu)//从其他文件获取的菜单数据
 let link = ref()
 let $router = useRouter()
@@ -68,8 +70,7 @@ function handleOpen() {
 }
 
 .my-menu-link {
-    /*color: white;*/
-    color: rgb(25, 118, 210);
+    color: white;
     background: #F2C037;
 }
 

@@ -13,7 +13,7 @@
                 />
 
                 <q-toolbar-title class="text-black op-font">
-                    死线原神-{{ currentMenu.desc }}
+                    死线原神-{{ position[0] + '-' + position[1] }}
                 </q-toolbar-title>
 
                 <div>user</div>
@@ -26,7 +26,7 @@
                 bordered
         >
             <q-list>
-                <Aside :currentMenu="currentMenu"/>
+                <Aside/>
             </q-list>
         </q-drawer>
 
@@ -39,17 +39,18 @@
 
 <script setup lang="ts">
 import {ref, watch} from 'vue';
-import {menu, MenuItems} from "components/models";
+import {menu} from "components/models";
 import {useRouter} from "vue-router/dist/vue-router";
 import Aside from "components/Aside.vue";
 
 const $router = useRouter()
 //从其他文件获取的菜单
 let menus = ref(menu)
+let position: any = ref([])
 
-let currentMenu = ref(new MenuItems());
+
 watch(() => $router.currentRoute.value.path, (newValue, oldValue) => {
-    findTitle()
+    position.value = findTitle()
     // console.log(positions)
 }, {immediate: true})
 
