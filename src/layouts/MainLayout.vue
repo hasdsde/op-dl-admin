@@ -50,7 +50,9 @@ let position: any = ref([])
 
 
 watch(() => $router.currentRoute.value.path, (newValue, oldValue) => {
-    position.value = findTitle()
+    if ($router.currentRoute.value.path != '/') {
+        position.value = findTitle()
+    }
     // console.log(positions)
 }, {immediate: true})
 

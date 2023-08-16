@@ -5,8 +5,12 @@ const routes: RouteRecordRaw[] = [
     {
         path: '/',
         component: () => import('layouts/MainLayout.vue'),
-        children: []
+        children: [{path: '', redirect: '/sys-about'}]
     },
+    {
+        path: '/login',
+        component: () => import('layouts/Login.vue')
+    }
 ];
 
 //将menus里面的装入其中
@@ -20,9 +24,9 @@ menu.value.forEach((element: any, index: number) => {
     });
 });
 console.log(routes)
-// routes.push({
-//     path: '/:catchAll(.*)*',
-//     component: () => import('pages/ErrorNotFound.vue'),
-// })
-
+//404
+routes.push({
+    path: '/:catchAll(.*)*',
+    component: () => import('pages/ErrorNotFound.vue'),
+})
 export default routes;
