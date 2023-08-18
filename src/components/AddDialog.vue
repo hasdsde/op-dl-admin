@@ -15,7 +15,7 @@
             </q-card-section>
             <!--      只能填数字      -->
             <q-card-section class="q-pa-md" v-if="item.type=='number'&&item.new">
-                <q-input type="number" :rules="[val => val > 0 && val < 20229999999 || '数字非法']" v-model="item.value"
+                <q-input type="number" :rules="[val => val > 0 && val < 1000 || '数字非法']" v-model="item.value"
                          :label="item.label"/>
             </q-card-section>
             <!--      开关表单，值仅限为01      -->
@@ -34,7 +34,7 @@
                         <template v-slot:prepend>
                             <q-icon name="event" class="cursor-pointer">
                                 <q-popup-proxy cover transition-show="scale" transition-hide="scale">
-                                    <q-date v-model="item.value" mask="YYYY-MM-DDTHH:mm">
+                                    <q-date v-model="item.value" mask="YYYY-MM-DDTHH:mm:ss[Z]">
                                         <div class="row items-center justify-end">
                                             <q-btn v-close-popup label="Close" color="primary" flat/>
                                         </div>
@@ -46,7 +46,7 @@
                         <template v-slot:append>
                             <q-icon name="access_time" class="cursor-pointer">
                                 <q-popup-proxy cover transition-show="scale" transition-hide="scale">
-                                    <q-time v-model="item.value" mask="YYYY-MM-DDTHH:mm" format24h>
+                                    <q-time v-model="item.value" mask="YYYY-MM-DDTHH:mm:ss[Z]" format24h>
                                         <div class="row items-center justify-end">
                                             <q-btn v-close-popup label="Close" color="primary" flat/>
                                         </div>
@@ -101,7 +101,7 @@ function handleSubmit() {
     const params = handleParam();
     if (info.value.mode == 'new') {
         api.post(info.value.link, params).then((res: any) => {
-            if (res.code == '200') {
+            if (res.code == 200) {
                 //向父级发送
                 CommonSuccess('操作成功')
             }
@@ -118,10 +118,6 @@ function handleSubmit() {
     handleReset()
 }
 
-//获取班级id
-function getClassId(value: any) {
-    classId.value = value;
-}
 
 //修改参数
 function handleParam() {
@@ -142,9 +138,6 @@ function handleParam() {
                 }
             }
         })
-        if (classId.value != "") {
-            params['classId'] = classId.value;
-        }
     }
     if (info.value.mode == 'update') {
         column.value.forEach((item: any) => {
@@ -164,9 +157,6 @@ function handleParam() {
         column.value.filter((item: any) => {
             return item != null;
         })
-        if (classId.value != "") {
-            params['classId'] = classId.value;
-        }
     }
     return params;
 }
@@ -178,5 +168,9 @@ function handleCancel() {
 
 
 </script>
-
+<style>
+.dialog-width {
+    min-width: 400px;
+}
+</style>
 

@@ -23,7 +23,6 @@ menu.value.forEach((element: any, index: number) => {
         })
     });
 });
-console.log(routes)
 //404
 routes.push({
     path: '/:catchAll(.*)*',

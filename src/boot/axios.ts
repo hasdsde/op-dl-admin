@@ -57,7 +57,6 @@ export default boot(({app}) => {
         }
         return res.data
     }, err => {
-        console.log(err)
         CommonFail(err.message)
     });
 });
