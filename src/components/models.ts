@@ -12,12 +12,13 @@ export let menu = ref([
         icon: 'perm_identity', label: '限时活动', name: "event", isopen: false, id: 2, children: [
             {file: "pool", link: 'pool', icon: 'people_alt', desc: '卡池', id: 6},
             {file: "event", link: 'event', icon: 'shopping_bag', desc: '活动', id: 7},
+            {file: "eventDetail", link: 'event-detail', icon: 'shopping_bag', desc: '活动细节', id: 10},
         ]
     },
     {
         icon: 'manage_accounts', label: '用户', id: 3, name: "user", isopen: false, children: [
             {file: "userManager", link: 'user-manager', icon: 'admin_panel_settings', desc: '用户管理', id: 8},
-            {file: "userLog", link: 'user-log', icon: 'info', desc: '用户日志', id: 9},
+            {file: "userLog", link: 'user-log', icon: 'info', desc: '用户日志', id: 11},
         ]
 
     },

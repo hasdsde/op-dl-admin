@@ -32,6 +32,8 @@ export default boot(({app}) => {
 
     // 请求拦截器
     api.interceptors.request.use((config) => {
+        //默认发formData
+        config.headers['Content-Type'] = 'application/x-www-form-urlencoded'
         if (localStorage.getItem('token') == null) {
             window.location.href = "/#/login"
         } else {

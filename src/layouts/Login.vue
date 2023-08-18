@@ -4,8 +4,7 @@
         <!--    <BackgroundImg />-->
         <div class="column justify-center" style="height: 90vh;">
             <div class="col-auto row justify-center">
-                <q-card class="col-auto shadow-10 text-h5
-"
+                <q-card class="col-auto shadow-10 text-h5"
                         style="background-color: rgb(255,255,255);padding: 50px;width: 400px">
                     <q-card-section class="row justify-between">
                         <p class="op-font">登录</p>
@@ -74,10 +73,12 @@ async function handleLogin() {
     await api.post('/login', {
         'name': name.value,
         'password': password.value
-    }).then((res: any) => {
+    },).then((res: any) => {
         if (res.code == '200') {
             console.log(res)
             localStorage.setItem('token', res.data.token)
+            localStorage.setItem('name', res.data.name)
+            localStorage.setItem('role', res.data.role)
             CommonSuccess('登录成功')
             $router.push('/')
         } else {
@@ -92,7 +93,7 @@ async function handleLogin() {
 
 <style scoped>
 .main {
-    background-image: url('../assets/bg.jpg');
+    background-image: url('src/assets/bg.png');
     background-size: cover;
     background-repeat: no-repeat;
 }
