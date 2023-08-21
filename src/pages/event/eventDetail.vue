@@ -49,7 +49,7 @@
 <script setup lang="ts">
 import {api} from 'src/boot/axios';
 import {ref} from 'vue';
-import {CommonLoading, CommonSuccess, CommonWarn, DialogAlert, LoadingFinish} from "components/commonResults";
+import {CommonLoading, CommonSuccess, DialogAlert, LoadingFinish} from "components/commonResults";
 import {useQuasar} from "quasar";
 import AddDialog from "components/AddDialog.vue";
 import {eventDetailColumns} from "components/columns";
@@ -74,8 +74,8 @@ function loadPage() {
     CommonLoading($q)
     api.get("/" + link, {
         params: {
-            'currentPage': page.value.currentPage,
-            'pageSize': page.value.pageSize,
+            'page': page.value.currentPage,
+            'size': page.value.pageSize,
         }
     }).then((res: any) => {
         dataList.value = res.data.Data

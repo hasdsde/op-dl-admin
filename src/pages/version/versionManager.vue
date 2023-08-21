@@ -81,15 +81,15 @@ const link = 'version'
 //加载表格
 const dataList = ref([])
 const selected = ref([])
-const tagCol = ref([])
+
 loadPage()
 
 function loadPage() {
     CommonLoading($q)
     api.get("/" + link + "-with-tag", {
         params: {
-            'currentPage': page.value.currentPage,
-            'pageSize': page.value.pageSize,
+            'page': page.value.currentPage,
+            'size': page.value.pageSize,
         }
     }).then((res: any) => {
         dataList.value = res.data.Data
@@ -107,7 +107,6 @@ function refresh() {
 
 //弹窗
 const addDialog = ref(false)
-const tagDialog = ref(false)
 const info = ref({title: '', mode: '', link: '', update: ''})
 //对studentColumns进行二次修改
 let dialogColumns: any = ref([])
@@ -142,6 +141,9 @@ function handleUpdate(rows: any) {
 }
 
 //修改标签
+const tagDialog = ref(false)
+const tagCol = ref([])
+
 function handleUpdateTag(rows: any) {
     if (selected.value.length != 1) {
         DialogAlert("必须选择一个")

@@ -1,5 +1,5 @@
 <template>
-    <q-card class="my-card  ">
+    <q-card class="my-card " style="min-width: 500px">
         <q-card-section>
             <div class="text-h6">修改标签</div>
             <div></div>
@@ -13,18 +13,13 @@
             </div>
         </q-card-section>
 
-        <q-card-section style="width: 500px">
-            <q-checkbox v-model="right" label="Label on Right"/>
-            <q-checkbox v-model="right" label="Label on Right"/>
-            <q-checkbox v-model="right" label="Label on Right"/>
-            <q-checkbox v-model="right" label="Label on Right"/>
+        <q-card-section>
+            <div v-for="tag in allTags">
+                <q-checkbox v-model="tag.check" :label="tag.name+' '+tag.icon"/>
+            </div>
         </q-card-section>
-
         <q-separator dark/>
-
-
         <q-card-section class="text-primary">
-
             <div class="text-right">
                 <q-btn color="primary" class="text-right" label="关闭" flat v-close-popup/>
                 <!--                <q-btn color="primary" class="text-right" label="提交" v-close-popup @click="handleSubmit"/>-->
@@ -40,19 +35,32 @@ import {api} from "boot/axios";
 
 const props = defineProps(['tagData', 'title', 'link']);
 const tagSort = ref(props.title)
-const tags = ref([])
+const allTags = ref([])
+const myTags = ref([])
 
-getTags()
+loadPage()
+
+function loadPage() {
+
+    getTags()
+
+    getCheckedTags()
+}
 
 //获取全部标签
 function getTags() {
-    api.get("/tag?currentPage=1&pageSize=50&sort=" + props.link).then((res: any) => {
-        console.log(res)
+    api.get("/tag?currentPage=1&pageSize=100&sort=" + props.title).then((res: any) => {
+        allTags.value = res.data.Data
+        allTags.value.forEach((item: any) => {
+            item.check = false
+        })
     })
 }
 
 function getCheckedTags() {
-    
+    api.get("/" + props.link + "-tag?currentPage=1&pageSize=100&id=" + props.tagData.id).then((res: any) => {
+        myTags.value = res.data
+    })
 }
 </script>
 

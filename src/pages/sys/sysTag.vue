@@ -74,8 +74,8 @@ function loadPage() {
     CommonLoading($q)
     api.get("/" + link, {
         params: {
-            'currentPage': page.value.currentPage,
-            'pageSize': page.value.pageSize,
+            'page': page.value.currentPage,
+            'size': page.value.pageSize,
         }
     }).then((res: any) => {
         dataList.value = res.data.Data
