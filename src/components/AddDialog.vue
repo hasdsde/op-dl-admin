@@ -108,6 +108,7 @@ function handleSubmit() {
         })
     }
     if (info.value.mode == 'update') {
+        console.log(params)
         api.put(info.value.link, params).then((res: any) => {
             if (res.code == '200') {
                 //向父级发送

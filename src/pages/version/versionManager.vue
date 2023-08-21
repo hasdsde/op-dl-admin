@@ -66,13 +66,12 @@ import AddDialog from "components/AddDialog.vue";
 import {versionColumns} from "components/columns";
 import {Page} from "components/entity";
 
-
+//自定义内容
 const page = ref(new Page(1, 10, 1,))
 const $q = useQuasar()
 const currentColumns = versionColumns
 const title = '版本'
-//分页管理
-
+const link = 'version'
 //加载表格
 const dataList = ref([])
 const selected = ref([])
@@ -84,7 +83,7 @@ loadPage()
 
 function loadPage() {
     CommonLoading($q)
-    api.get("/version-with-tag", {
+    api.get("/" + link + "-with-tag", {
         params: {
             'currentPage': page.value.currentPage,
             'pageSize': page.value.pageSize,
@@ -117,7 +116,7 @@ function handleNew() {
     addDialog.value = true;
     info.value.title = '新增'
     info.value.mode = 'new'
-    info.value.link = '/version'
+    info.value.link = link
 }
 
 
@@ -131,7 +130,7 @@ function handleUpdate(rows: any) {
     })
     info.value.title = '修改'
     info.value.mode = 'update'
-    info.value.link = '/version'
+    info.value.link = link
 }
 
 
@@ -147,7 +146,7 @@ function handleDelete() {
         cancel: true
     }).onOk(() => {
         selected.value.forEach((item: any) => {
-            api.post('version-delete', {
+            api.post(link + '-delete', {
                 'id': item.id
             }).then((res: any) => {
                 if (res.code == '200') {
