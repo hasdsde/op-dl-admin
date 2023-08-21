@@ -38,3 +38,10 @@ export class MenuItems {
     id: number | undefined;
 
 }
+
+export const tagSortOption: any = [
+    {label: "全部", value: "全部"},
+    {label: "版本", value: "版本"},
+    {label: "版本活动", value: "版本活动"},
+    {label: "卡池", value: "卡池"},
+    {label: "活动", value: "活动"}]

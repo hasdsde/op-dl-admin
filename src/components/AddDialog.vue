@@ -79,15 +79,12 @@
 import {ref} from "vue";
 import {api} from "boot/axios";
 import {CommonSuccess} from "components/commonResults";
-import {useRouter} from "vue-router";
 import {allNull} from "components/utils";
 
 
 const props = defineProps(['info', 'column'])
 const column = ref(props.column)
 const info = ref(props.info)
-const classId = ref('')
-const rt = useRouter()
 
 // 重置
 function handleReset() {

@@ -8,6 +8,7 @@
                            @click="refresh"/>
                     <q-btn color="secondary" class="q-mr-md" label="新增" icon="add" @click="handleNew"/>
                     <q-btn color="purple" class="q-mr-md" label="修改" icon="update" @click="handleUpdate"/>
+                    <q-btn color="purple" class="q-mr-md" label="修改标签" icon="update" @click="handleUpdateTag"/>
                     <q-btn color="red" class="q-mr-md" label="删除" icon="delete" @click="handleDelete"/>
                 </div>
                 <!--                <div class="col text-right">-->
@@ -55,6 +56,10 @@
         <q-dialog v-model="addDialog" position="right" full-height persistent @hide="loadPage">
             <AddDialog :info="info" :column="dialogColumns"/>
         </q-dialog>
+        <!--    编辑标签    -->
+        <q-dialog v-model="tagDialog" persistent @hide="loadPage">
+            <TagDialog :tagData="tagCol" :title="title" :link="link"/>
+        </q-dialog>
     </div>
 </template>
 <script setup lang="ts">
@@ -65,6 +70,7 @@ import {useQuasar} from "quasar";
 import AddDialog from "components/AddDialog.vue";
 import {versionColumns} from "components/columns";
 import {Page} from "components/entity";
+import TagDialog from "components/TagDialog.vue";
 
 //自定义内容
 const page = ref(new Page(1, 10, 1,))
@@ -75,10 +81,7 @@ const link = 'version'
 //加载表格
 const dataList = ref([])
 const selected = ref([])
-const searchName = ref('')
-const searchNumber = ref('')
-const searchClass = ref([])
-
+const tagCol = ref([])
 loadPage()
 
 function loadPage() {
@@ -104,6 +107,7 @@ function refresh() {
 
 //弹窗
 const addDialog = ref(false)
+const tagDialog = ref(false)
 const info = ref({title: '', mode: '', link: '', update: ''})
 //对studentColumns进行二次修改
 let dialogColumns: any = ref([])
@@ -135,6 +139,16 @@ function handleUpdate(rows: any) {
     info.value.title = '修改'
     info.value.mode = 'update'
     info.value.link = link
+}
+
+//修改标签
+function handleUpdateTag(rows: any) {
+    if (selected.value.length != 1) {
+        DialogAlert("必须选择一个")
+        return
+    }
+    tagDialog.value = true;
+    tagCol.value = selected.value[0];
 }
 
 
