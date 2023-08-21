@@ -60,7 +60,7 @@
 <script setup lang="ts">
 import {api} from 'src/boot/axios';
 import {ref} from 'vue';
-import {CommonLoading, CommonSuccess, CommonWarn, LoadingFinish} from "components/commonResults";
+import {CommonLoading, CommonSuccess, DialogAlert, LoadingFinish} from "components/commonResults";
 import {useQuasar} from "quasar";
 import AddDialog from "components/AddDialog.vue";
 import {poolColumns} from "components/columns";
@@ -83,7 +83,7 @@ loadPage()
 
 function loadPage() {
     CommonLoading($q)
-    api.get("/" + link, {
+    api.get("/" + link + "-with-tag", {
         params: {
             'currentPage': page.value.currentPage,
             'pageSize': page.value.pageSize,
@@ -122,6 +122,10 @@ function handleNew() {
 
 //修改
 function handleUpdate(rows: any) {
+    if (selected.value.length != 1) {
+        DialogAlert("必须选择一个")
+        return
+    }
     addDialog.value = true;
     const slected = selected.value[0]
     //将既定的命运交给需要之人
@@ -136,8 +140,8 @@ function handleUpdate(rows: any) {
 
 //删除
 function handleDelete() {
-    if (selected.value.length == 0) {
-        CommonWarn('请选择数据');
+    if (selected.value.length != 1) {
+        DialogAlert("必须选择一个")
         return
     }
     $q.dialog({

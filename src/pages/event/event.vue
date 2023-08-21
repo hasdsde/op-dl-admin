@@ -10,17 +10,6 @@
                     <q-btn color="purple" class="q-mr-md" label="修改" icon="update" @click="handleUpdate"/>
                     <q-btn color="red" class="q-mr-md" label="删除" icon="delete" @click="handleDelete"/>
                 </div>
-                <!--                <div class="col text-right">-->
-                <!--                    <q-input filled dense v-model="searchName" label="姓名" class="inline-block q-mr-sm"-->
-                <!--                             @keydown.enter="loadPage"/>-->
-                <!--                    <q-input filled dense v-model="searchNumber" label="学号" class="inline-block q-mr-sm"-->
-                <!--                             @keydown.enter="loadPage"/>-->
-                <!--                    <q-input filled dense v-model="searchClass" label="班级" class="inline-block q-mr-sm"-->
-                <!--                             @keydown.enter="loadPage"/>-->
-                <!--                    <q-btn color="red" class="inline vertical-top q-mr-sm" label="重置" icon="restart_alt"-->
-                <!--                           @click="resetSearch"/>-->
-                <!--                    <q-btn color="primary" class="inline vertical-top" label="搜索" icon="search" @click="loadPage"/>-->
-                <!--                </div>-->
             </div>
         </div>
         <!-- 表格 -->
@@ -60,7 +49,7 @@
 <script setup lang="ts">
 import {api} from 'src/boot/axios';
 import {ref} from 'vue';
-import {CommonLoading, CommonSuccess, CommonWarn, LoadingFinish} from "components/commonResults";
+import {CommonLoading, CommonSuccess, CommonWarn, DialogAlert, LoadingFinish} from "components/commonResults";
 import {useQuasar} from "quasar";
 import AddDialog from "components/AddDialog.vue";
 import {eventColumns} from "components/columns";
@@ -122,6 +111,10 @@ function handleNew() {
 
 //修改
 function handleUpdate(rows: any) {
+    if (selected.value.length != 1) {
+        DialogAlert("必须选择一个")
+        return
+    }
     addDialog.value = true;
     const slected = selected.value[0]
     //将既定的命运交给需要之人
@@ -136,8 +129,8 @@ function handleUpdate(rows: any) {
 
 //删除
 function handleDelete() {
-    if (selected.value.length == 0) {
-        CommonWarn('请选择数据');
+    if (selected.value.length != 1) {
+        DialogAlert("必须选择一个")
         return
     }
     $q.dialog({

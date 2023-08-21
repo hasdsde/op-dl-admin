@@ -73,8 +73,6 @@ export function DialogAlert(message: string) {
         title: '消息',
         message: message,
         persistent: true
-    }).onOk(() => {
-        CommonWarn('此处应该有音频')
     })
 }
 

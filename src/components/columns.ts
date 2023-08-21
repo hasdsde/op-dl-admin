@@ -53,8 +53,7 @@ export const eventColumns: any = [
     {name: 'tag', align: 'center', label: '标签', field: 'tag'},
 ]
 export const eventDetailColumns: any = [
-    {name: 'id', align: 'center', label: 'id', field: 'id', type: 'primary-key', update: true},
-    {name: 'title', align: 'center', label: '标题', field: 'title', new: true, type: 'input', update: true},
+    {name: 'id', align: 'center', label: 'ID', field: 'id', type: 'primary-key', update: true},
     {
         name: 'eventId',
         align: 'center',
@@ -64,14 +63,19 @@ export const eventDetailColumns: any = [
         type: 'number',
         update: true
     },
+    {name: 'title', align: 'center', label: '标题', field: 'title', new: true, type: 'input', update: true},
     {name: 'primogems', align: 'center', label: '原石', field: 'primogems', type: 'number', new: true, update: true},
-    {name: 'todoNum', align: 'center', label: '事件数量', field: 'todoNum', type: 'number', new: true, update: true},
     {name: 'award', align: 'center', label: '奖励', field: 'award', type: 'input', new: true, update: true},
     {name: 'icon', align: 'center', label: '图标', field: 'icon', type: 'input', new: true, update: true},
     {name: 'startTime', align: 'center', label: '开始时间', field: 'startTime', type: 'time', new: true, update: true},
     {name: 'endTime', align: 'center', label: '结束时间', field: 'endTime', type: 'time', new: true, update: true},
 ]
-
+export const tagColumns: any = [
+    {name: 'id', align: 'center', label: 'ID', field: 'id', type: 'primary-key', update: true,},
+    {name: 'name', align: 'center', label: '名称', field: 'name', type: 'input', new: true, update: true},
+    {name: 'icon', align: 'center', label: '图标', field: 'icon', type: 'input', new: true, update: true},
+    {name: 'sort', align: 'center', label: '分类', field: 'sort', type: 'input', new: true, update: true},
+]
 
 //学生列表
 export const studentColumns: any = [

@@ -15,16 +15,17 @@ export let menu = ref([
             {file: "eventDetail", link: 'event-detail', icon: 'shopping_bag', desc: '活动细节', id: 10},
         ]
     },
-    {
-        icon: 'manage_accounts', label: '用户', id: 3, name: "user", isopen: false, children: [
-            {file: "userManager", link: 'user-manager', icon: 'admin_panel_settings', desc: '用户管理', id: 8},
-            {file: "userLog", link: 'user-log', icon: 'info', desc: '用户日志', id: 11},
-        ]
-
-    },
+    // {
+    //     icon: 'manage_accounts', label: '用户', id: 3, name: "user", isopen: false, children: [
+    //         {file: "userManager", link: 'user-manager', icon: 'admin_panel_settings', desc: '用户管理', id: 8},
+    //         {file: "userLog", link: 'user-log', icon: 'info', desc: '用户日志', id: 11},
+    //     ]
+    //
+    // },
     {
         icon: 'settings', label: '系统', id: 3, isopen: false, name: "sys", children: [
-            {file: "sysConfig", link: 'sys-config', icon: 'admin_panel_settings', desc: '系统设置', id: 8},
+            // {file: "sysConfig", link: 'sys-config', icon: 'admin_panel_settings', desc: '系统设置', id: 8},
+            {file: "sysTag", link: 'sys-tag', icon: 'tag', desc: '标签管理', id: 11},
             {file: "sysAbout", link: 'sys-about', icon: 'info', desc: '关于', id: 9},
         ]
     }

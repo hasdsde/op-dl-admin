@@ -49,18 +49,18 @@
 <script setup lang="ts">
 import {api} from 'src/boot/axios';
 import {ref} from 'vue';
-import {CommonLoading, CommonSuccess, CommonWarn, DialogAlert, LoadingFinish} from "components/commonResults";
+import {CommonLoading, CommonSuccess, DialogAlert, LoadingFinish} from "components/commonResults";
 import {useQuasar} from "quasar";
 import AddDialog from "components/AddDialog.vue";
-import {eventDetailColumns} from "components/columns";
+import {tagColumns} from "components/columns";
 import {Page} from "components/entity";
 
 //自定义内容
 const page = ref(new Page(1, 10, 1,))
 const $q = useQuasar()
-const currentColumns = eventDetailColumns
-const title = '活动详情'
-const link = 'eventDetail'
+const currentColumns = tagColumns
+const title = '标签'
+const link = 'tag'
 //加载表格
 const dataList = ref([])
 const selected = ref([])
@@ -111,10 +111,12 @@ function handleNew() {
 
 //修改
 function handleUpdate(rows: any) {
+
     if (selected.value.length != 1) {
         DialogAlert("必须选择一个")
         return
     }
+
     addDialog.value = true;
     const slected = selected.value[0]
     //将既定的命运交给需要之人
