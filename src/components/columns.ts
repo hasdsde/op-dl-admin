@@ -74,7 +74,11 @@ export const tagColumns: any = [
     {name: 'id', align: 'center', label: 'ID', field: 'id', type: 'primary-key', update: true,},
     {name: 'name', align: 'center', label: '名称', field: 'name', type: 'input', new: true, update: true},
     {name: 'icon', align: 'center', label: '图标', field: 'icon', type: 'input', new: true, update: true},
-    {name: 'sort', align: 'center', label: '分类', field: 'sort', type: 'input', new: true, update: true},
+    {
+        name: 'sort', align: 'center', label: '分类', field: 'sort', type: 'select', new: true, update: true, option: [
+            '版本', '版本活动', '卡池', '活动'
+        ]
+    },
 ]
 
 //学生列表
