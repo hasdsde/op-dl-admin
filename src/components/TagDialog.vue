@@ -15,7 +15,7 @@
 
         <q-card-section>
             <div v-for="tag in allTags">
-                <q-checkbox v-model="tag.check" :label="tag.name+' '+tag.icon"/>
+                <q-checkbox v-model="tag.check" :label="tag.name+' '+tag.icon" @click="handleCheck(tag)"/>
             </div>
         </q-card-section>
         <q-separator dark/>
@@ -32,35 +32,39 @@
 import {tagSortOption} from "components/models";
 import {ref} from "vue";
 import {api} from "boot/axios";
+import {useQuasar} from "quasar";
 
-const props = defineProps(['tagData', 'title', 'link']);
+const props = defineProps(['tagData', 'title', 'link', 'path']);
 const tagSort = ref(props.title)
 const allTags = ref([])
 const myTags = ref([])
-
+const $q = useQuasar()
 loadPage()
 
 function loadPage() {
-    getTags().then(() => {
-        getCheckedTags()
-    })
-
+    getTags()
 }
 
 //获取全部标签
 async function getTags() {
+    $q.loading.show({
+        message: '加载...'
+    })
     api.get("/tag?currentPage=1&pageSize=100&sort=" + props.title).then((res: any) => {
         allTags.value = res.data.Data
         allTags.value.forEach((item: any) => {
             item.check = false
         })
+        getCheckedTags()
     })
 }
 
 async function getCheckedTags() {
-    api.get("/" + props.link + "-tag?currentPage=1&pageSize=100&id=" + props.tagData.num).then((res: any) => {
+    api.get("/" + props.link + "-tag?currentPage=1&pageSize=100&id=" + props.tagData).then((res: any) => {
         myTags.value = res.data.Data
-        if (myTags.value.length != 0) {
+
+        //适配
+        if (myTags.value != null) {
             myTags.value.forEach((mytag: any) => {
                 allTags.value.forEach((alltag: any) => {
                     if (mytag.tagId.toString() == alltag.id.toString()) {
@@ -69,7 +73,32 @@ async function getCheckedTags() {
                 })
             });
         }
+        $q.loading.hide()
+
     })
+}
+
+function handleCheck(tag: any) {
+
+    $q.loading.show({
+        message: '加载...'
+    })
+    //取消
+    if (tag.check) {
+        api.post("/" + props.link + "-tag", {
+            "tagId": tag.id,
+            [props.path + "Id"]: props.tagData
+        }).then(() => {
+            $q.loading.hide()
+        })
+    } else {
+        api.post("/" + props.link + "-tag-delete", {
+            "tagId": tag.id,
+            [props.path + "Id"]: props.tagData
+        }).then(() => {
+            $q.loading.hide()
+        })
+    }
 }
 </script>
 

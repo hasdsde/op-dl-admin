@@ -58,7 +58,7 @@
         </q-dialog>
         <!--    编辑标签    -->
         <q-dialog v-model="tagDialog" persistent @hide="loadPage">
-            <TagDialog :tagData="tagCol" :title="title" :link="link"/>
+            <TagDialog :tagData="tagCol.id" :title="title" :link="link" :path="path"/>
         </q-dialog>
     </div>
 </template>
@@ -78,6 +78,7 @@ const $q = useQuasar()
 const currentColumns = versionEventColumns
 const title = '版本活动'
 const link = 'version-event'
+const path = 'versionEvent'
 //加载表格
 const dataList = ref([])
 const selected = ref([])
