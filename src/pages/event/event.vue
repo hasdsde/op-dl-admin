@@ -8,6 +8,7 @@
                            @click="refresh"/>
                     <q-btn color="secondary" class="q-mr-md" label="新增" icon="add" @click="handleNew"/>
                     <q-btn color="purple" class="q-mr-md" label="修改" icon="update" @click="handleUpdate"/>
+                    <q-btn color="purple" class="q-mr-md" label="修改标签" icon="update" @click="handleUpdateTag"/>
                     <q-btn color="red" class="q-mr-md" label="删除" icon="delete" @click="handleDelete"/>
                 </div>
             </div>
@@ -44,6 +45,10 @@
         <q-dialog v-model="addDialog" position="right" full-height persistent @hide="loadPage">
             <AddDialog :info="info" :column="dialogColumns"/>
         </q-dialog>
+        <!--    编辑标签    -->
+        <q-dialog v-model="tagDialog" persistent @hide="loadPage">
+            <TagDialog :tagData="tagCol.id" :title="title" :link="link" :path="path"/>
+        </q-dialog>
     </div>
 </template>
 <script setup lang="ts">
@@ -54,20 +59,20 @@ import {useQuasar} from "quasar";
 import AddDialog from "components/AddDialog.vue";
 import {eventColumns} from "components/columns";
 import {Page} from "components/entity";
+import TagDialog from "components/TagDialog.vue";
 
 //自定义内容
 const page = ref(new Page(1, 10, 1,))
 const $q = useQuasar()
 const currentColumns = eventColumns
-const title = '限时活动'
+const title = '活动'
 const link = 'event'
+const path = 'event'
 //加载表格
 const dataList = ref([])
 const selected = ref([])
-const searchName = ref('')
-const searchNumber = ref('')
-const searchClass = ref([])
-
+const tagCol = ref([])
+const tagDialog = ref(false)
 loadPage()
 
 function loadPage() {
@@ -106,6 +111,16 @@ function handleNew() {
     info.value.title = '新增'
     info.value.mode = 'new'
     info.value.link = link
+}
+
+//修改标签
+function handleUpdateTag(rows: any) {
+    if (selected.value.length != 1) {
+        DialogAlert("必须选择一个")
+        return
+    }
+    tagDialog.value = true;
+    tagCol.value = selected.value[0];
 }
 
 

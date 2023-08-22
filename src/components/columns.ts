@@ -23,6 +23,8 @@ export const poolColumns: any = [
     {name: 'star', align: 'center', label: '星级', field: 'star', type: 'number', new: true, update: true},
     {name: 'startTime', align: 'center', label: '开始时间', field: 'startTime', type: 'time', new: true, update: true},
     {name: 'endTime', align: 'center', label: '结束时间', field: 'endTime', type: 'time', new: true, update: true},
+    {name: 'tag', align: 'center', label: '标签', field: 'tag'},
+    
 ]
 export const versionEventColumns: any = [
     {name: 'id', align: 'center', label: 'ID', field: 'id', type: 'primary-key', update: true},
