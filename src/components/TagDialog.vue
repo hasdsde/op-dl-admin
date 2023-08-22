@@ -41,14 +41,14 @@ const myTags = ref([])
 loadPage()
 
 function loadPage() {
+    getTags().then(() => {
+        getCheckedTags()
+    })
 
-    getTags()
-
-    getCheckedTags()
 }
 
 //获取全部标签
-function getTags() {
+async function getTags() {
     api.get("/tag?currentPage=1&pageSize=100&sort=" + props.title).then((res: any) => {
         allTags.value = res.data.Data
         allTags.value.forEach((item: any) => {
@@ -57,9 +57,18 @@ function getTags() {
     })
 }
 
-function getCheckedTags() {
-    api.get("/" + props.link + "-tag?currentPage=1&pageSize=100&id=" + props.tagData.id).then((res: any) => {
-        myTags.value = res.data
+async function getCheckedTags() {
+    api.get("/" + props.link + "-tag?currentPage=1&pageSize=100&id=" + props.tagData.num).then((res: any) => {
+        myTags.value = res.data.Data
+        if (myTags.value.length != 0) {
+            myTags.value.forEach((mytag: any) => {
+                allTags.value.forEach((alltag: any) => {
+                    if (mytag.tagId.toString() == alltag.id.toString()) {
+                        alltag.check = true
+                    }
+                })
+            });
+        }
     })
 }
 </script>
