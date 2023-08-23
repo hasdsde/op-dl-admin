@@ -22,12 +22,6 @@
                      selection="multiple"
                      v-model:selected="selected"
                      hide-pagination>
-                <template v-slot:body-cell-icon="props">
-                    <q-td class="text-center">
-                        <q-badge class="q-mr-md" :color="props.row.icon"
-                                 :label="props.row.icon"/>
-                    </q-td>
-                </template>
                 <template v-slot:body-cell-startTime="props">
                     <q-td :props="props">
                         <div>

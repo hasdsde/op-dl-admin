@@ -34,6 +34,13 @@
                      selection="multiple"
                      v-model:selected="selected"
                      hide-pagination>
+
+                <template v-slot:body-cell-img="props">
+                    <q-td class="text-center">
+                        <q-badge class="q-mr-md" :color="props.row.img"
+                                 :label="props.row.img"/>
+                    </q-td>
+                </template>
                 <template v-slot:body-cell-tag="props">
                     <q-td class="text-center">
                         <q-badge v-for="tags in props.row.versionTag" class="q-mr-md" :color="tags.tag.icon"

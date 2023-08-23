@@ -4,6 +4,16 @@ export const versionColumns: any = [
     {name: 'id', align: 'center', label: 'ID', field: 'id', type: 'primary-key', update: true},
     {name: 'num', align: 'center', label: '版本号', field: 'num', new: true, type: 'number', update: true},
     {name: 'title', align: 'center', label: '标题', field: 'title', new: true, type: 'input', update: true},
+    {
+        name: 'img',
+        align: 'center',
+        label: '图像',
+        field: 'img',
+        new: true,
+        type: 'select',
+        update: true,
+        option: availableColor
+    },
     {name: 'startTime', align: 'center', label: '开始时间', field: 'startTime', type: 'time', new: true, update: true},
     {name: 'endTime', align: 'center', label: '结束时间', field: 'endTime', type: 'time', new: true, update: true},
     {name: 'tag', align: 'center', label: '标签', field: 'tag'},
@@ -29,6 +39,14 @@ export const poolColumns: any = [
         new: true,
         update: true,
         option: availableColor
+    }, {
+        name: 'other',
+        align: 'center',
+        label: '备注',
+        field: 'other',
+        type: 'input',
+        new: true,
+        update: true,
     },
     {
         name: 'type', align: 'center', label: '类型', field: 'type', type: 'select', new: true, update: true, option: [
