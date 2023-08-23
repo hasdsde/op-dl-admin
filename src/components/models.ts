@@ -45,3 +45,7 @@ export const tagSortOption: any = ['全部', '版本', '版本活动', '卡池',
 // {label: "版本活动", value: "版本活动"},
 // {label: "卡池", value: "卡池"},
 // {label: "活动", value: "活动"}]
+
+export const availableColor: any = ['red', 'pink', 'purple', 'deep-purple', 'indigo'
+    , 'blue', 'light-blue', 'cyan', 'teal', 'green', 'light-green', 'lime', 'yellow', 'amber',
+    'orange', 'deep-orange', 'brown', 'grey', 'blue-grey',]

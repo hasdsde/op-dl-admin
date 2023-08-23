@@ -1,3 +1,5 @@
+import {availableColor} from "components/models";
+
 export const versionColumns: any = [
     {name: 'id', align: 'center', label: 'ID', field: 'id', type: 'primary-key', update: true},
     {name: 'num', align: 'center', label: '版本号', field: 'num', new: true, type: 'number', update: true},
@@ -18,7 +20,16 @@ export const poolColumns: any = [
         update: true
     },
     {name: 'name', align: 'center', label: '角色名', field: 'name', type: 'input', new: true, update: true},
-    {name: 'img', align: 'center', label: '图像', field: 'img', type: 'input', new: true, update: true},
+    {
+        name: 'img',
+        align: 'center',
+        label: '图像',
+        field: 'img',
+        type: 'select',
+        new: true,
+        update: true,
+        option: availableColor
+    },
     {
         name: 'type', align: 'center', label: '类型', field: 'type', type: 'select', new: true, update: true, option: [
             '角色', '武器'
@@ -76,14 +87,32 @@ export const eventDetailColumns: any = [
     {name: 'title', align: 'center', label: '标题', field: 'title', new: true, type: 'input', update: true},
     {name: 'primogems', align: 'center', label: '原石', field: 'primogems', type: 'number', new: true, update: true},
     {name: 'award', align: 'center', label: '奖励', field: 'award', type: 'input', new: true, update: true},
-    {name: 'icon', align: 'center', label: '图标', field: 'icon', type: 'input', new: true, update: true},
+    {
+        name: 'icon',
+        align: 'center',
+        label: '图标',
+        field: 'icon',
+        type: 'select',
+        new: true,
+        update: true,
+        option: availableColor
+    },
     {name: 'startTime', align: 'center', label: '开始时间', field: 'startTime', type: 'time', new: true, update: true},
     {name: 'endTime', align: 'center', label: '结束时间', field: 'endTime', type: 'time', new: true, update: true},
 ]
 export const tagColumns: any = [
     {name: 'id', align: 'center', label: 'ID', field: 'id', type: 'primary-key', update: true,},
     {name: 'name', align: 'center', label: '名称', field: 'name', type: 'input', new: true, update: true},
-    {name: 'icon', align: 'center', label: '图标', field: 'icon', type: 'input', new: true, update: true},
+    {
+        name: 'icon',
+        align: 'center',
+        label: '图标',
+        field: 'icon',
+        type: 'select',
+        new: true,
+        update: true,
+        option: availableColor
+    },
     {
         name: 'sort', align: 'center', label: '分类', field: 'sort', type: 'select', new: true, update: true, option: [
             '版本', '版本活动', '卡池', '活动'

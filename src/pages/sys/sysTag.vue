@@ -25,10 +25,10 @@
                      selection="multiple"
                      v-model:selected="selected"
                      hide-pagination>
-                <template v-slot:body-cell-tag="props">
+                <template v-slot:body-cell-icon="props">
                     <q-td class="text-center">
-                        <q-badge v-for="tags in props.row.eventTag" class="q-mr-md" color="primary"
-                                 :label="tags.tag.name"/>
+                        <q-badge class="q-mr-md" :color="props.row.icon"
+                                 :label="props.row.icon"/>
                     </q-td>
                 </template>
             </q-table>

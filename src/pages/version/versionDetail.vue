@@ -36,7 +36,7 @@
                      hide-pagination>
                 <template v-slot:body-cell-tag="props">
                     <q-td class="text-center">
-                        <q-badge v-for="tags in props.row.versionEventTag" class="q-mr-md" color="primary"
+                        <q-badge v-for="tags in props.row.versionEventTag" class="q-mr-md" :color="tags.tag.icon"
                                  :label="tags.tag.name"/>
                     </q-td>
                 </template>
