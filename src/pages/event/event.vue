@@ -144,10 +144,7 @@ function handleUpdate(rows: any) {
 
 //删除
 function handleDelete() {
-    if (selected.value.length != 1) {
-        DialogAlert("必须选择一个")
-        return
-    }
+
     $q.dialog({
         title: '删除' + title,
         message: '你确定要删除' + selected.value.length + '条数据吗?',
