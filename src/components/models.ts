@@ -39,9 +39,9 @@ export class MenuItems {
 
 }
 
-export const tagSortOption: any = [
-    {label: "全部", value: "全部"},
-    {label: "版本", value: "版本"},
-    {label: "版本活动", value: "版本活动"},
-    {label: "卡池", value: "卡池"},
-    {label: "活动", value: "活动"}]
+export const tagSortOption: any = ['全部', '版本', '版本活动', '卡池', '活动']
+// {label: "全部", value: "全部"},
+// {label: "版本", value: "版本"},
+// {label: "版本活动", value: "版本活动"},
+// {label: "卡池", value: "卡池"},
+// {label: "活动", value: "活动"}]

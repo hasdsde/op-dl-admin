@@ -19,12 +19,20 @@ export const poolColumns: any = [
     },
     {name: 'name', align: 'center', label: '角色名', field: 'name', type: 'input', new: true, update: true},
     {name: 'img', align: 'center', label: '图像', field: 'img', type: 'input', new: true, update: true},
-    {name: 'type', align: 'center', label: '类型', field: 'type', type: 'input', new: true, update: true},
-    {name: 'star', align: 'center', label: '星级', field: 'star', type: 'number', new: true, update: true},
+    {
+        name: 'type', align: 'center', label: '类型', field: 'type', type: 'select', new: true, update: true, option: [
+            '角色', '武器'
+        ]
+    },
+    {
+        name: 'star', align: 'center', label: '星级', field: 'star', type: 'select', new: true, update: true, option: [
+            '4', '5',
+        ]
+    },
     {name: 'startTime', align: 'center', label: '开始时间', field: 'startTime', type: 'time', new: true, update: true},
     {name: 'endTime', align: 'center', label: '结束时间', field: 'endTime', type: 'time', new: true, update: true},
     {name: 'tag', align: 'center', label: '标签', field: 'tag'},
-    
+
 ]
 export const versionEventColumns: any = [
     {name: 'id', align: 'center', label: 'ID', field: 'id', type: 'primary-key', update: true},

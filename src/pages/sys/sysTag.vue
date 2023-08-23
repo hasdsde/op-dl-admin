@@ -3,13 +3,16 @@
         <!--按钮-->
         <div class="col q-mb-md">
             <div class="row justify-between">
-                <div class="col-5">
+                <div>
                     <q-btn color="primary" class="q-mr-md" label="刷新" icon="refresh"
                            @click="refresh"/>
                     <q-btn color="secondary" class="q-mr-md" label="新增" icon="add" @click="handleNew"/>
                     <q-btn color="purple" class="q-mr-md" label="修改" icon="update" @click="handleUpdate"/>
                     <q-btn color="red" class="q-mr-md" label="删除" icon="delete" @click="handleDelete"/>
                 </div>
+                <q-select filled dense v-model="tagSort" style="width: 200px" :options="tagSortOption"
+                          @update:model-value="loadPage"
+                          label="标签类型"/>
             </div>
         </div>
         <!-- 表格 -->
@@ -54,6 +57,7 @@ import {useQuasar} from "quasar";
 import AddDialog from "components/AddDialog.vue";
 import {tagColumns} from "components/columns";
 import {Page} from "components/entity";
+import {tagSortOption} from "components/models";
 
 //自定义内容
 const page = ref(new Page(1, 10, 1,))
@@ -64,10 +68,7 @@ const link = 'tag'
 //加载表格
 const dataList = ref([])
 const selected = ref([])
-const searchName = ref('')
-const searchNumber = ref('')
-const searchClass = ref([])
-
+const tagSort = ref('全部')
 loadPage()
 
 function loadPage() {
@@ -76,6 +77,7 @@ function loadPage() {
         params: {
             'page': page.value.currentPage,
             'size': page.value.pageSize,
+            'sort': tagSort.value
         }
     }).then((res: any) => {
         dataList.value = res.data.Data
