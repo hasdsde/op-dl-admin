@@ -62,3 +62,9 @@ function wrapCsvValue(val: any, formatFn: any, row: any) {
     return `"${formatted}"`
 }
 
+//切割日期
+export function sliceDateTime(time: string): string {
+    time = time.slice(0, 19)
+    return time.replace("T", ' ')
+}
+

@@ -28,6 +28,20 @@
                                  :label="tags.tag.name"/>
                     </q-td>
                 </template>
+                <template v-slot:body-cell-startTime="props">
+                    <q-td :props="props">
+                        <div>
+                            {{ sliceDateTime(props.value) }}
+                        </div>
+                    </q-td>
+                </template>
+                <template v-slot:body-cell-endTime="props">
+                    <q-td :props="props">
+                        <div>
+                            {{ sliceDateTime(props.value) }}
+                        </div>
+                    </q-td>
+                </template>
             </q-table>
 
             <div class="q-pa-lg flex flex-center">
@@ -54,6 +68,7 @@ import {useQuasar} from "quasar";
 import AddDialog from "components/AddDialog.vue";
 import {eventDetailColumns} from "components/columns";
 import {Page} from "components/entity";
+import {sliceDateTime} from "components/utils";
 
 //自定义内容
 const page = ref(new Page(1, 10, 1,))
